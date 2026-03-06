@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 const sequelize = require('./config/database');
 const orderRoutes = require('./routes/orderRoutes');
 const Order = require('./models/Order');
@@ -28,6 +30,8 @@ app.get('/', (req, res) => {
     res.status(200).json({message: 'API de pedidos está funcionando.'});
 });
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 sequelize. authenticate().then(() =>{
     console.log('Conectado com sucesso ao banco de dados.');
     return sequelize.sync();
@@ -41,3 +45,4 @@ sequelize. authenticate().then(() =>{
 .catch((error) => {
     console.log('Erro ao iniciar a API: ', error);
 });
+
