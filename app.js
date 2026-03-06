@@ -25,19 +25,19 @@ Item.belongsTo(Order, {
 app.use('/order', orderRoutes);
 
 app.get('/', (req, res) => {
-    res.status(200).json({message: 'API about orders is working.'});
+    res.status(200).json({message: 'API de pedidos está funcionando.'});
 });
 
 sequelize. authenticate().then(() =>{
-    console.log('Connection to database successful.');
+    console.log('Conectado com sucesso ao banco de dados.');
     return sequelize.sync();
 })
 .then(() => {
     console.log('Tables synchronized successfully.');
     app.listen(process.env.PORT || 3000, () => {
-        console.log(`Server running on port ${process.env.PORT || 3000}`);
+        console.log(`Servidor está na porta ${process.env.PORT || 3000}`);
     });
 })
 .catch((error) => {
-    console.log('Error starting the application: ', error);
+    console.log('Erro ao iniciar a API: ', error);
 });
