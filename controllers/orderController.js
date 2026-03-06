@@ -127,7 +127,7 @@ exports.updateOrder = async (req, res) => {
 
         return res.status(201).json(updatedOrder);
     }catch(error){
-        await transaction.rollbacl();
+        await transaction.rollback();
         return res.status(500).json({message: 'Erro ao atualizar pedido. ', error: error.message});
     }
 };
