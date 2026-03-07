@@ -300,23 +300,55 @@ Resposta padrão:
 
 # Testando com Postman
 
-A collection do Postman está disponível em:
+A documentação da API também está disponível através de uma collection do Postman.
+
+Os arquivos estão disponíveis em:
 
 ```
 docs/API-order.postman_collection.json
+docs/API-order.postman_environment.json
 ```
 
-Importe no Postman:
+## Importando no Postman
+
+1. Abra o Postman
+2. Clique em **Import**
+3. Selecione os arquivos:
 
 ```
-Import → Upload File
+docs/API-order.postman_collection.json
+docs/API-order.postman_environment.json
 ```
 
-Fluxo de teste:
+4. Após importar, selecione o **Environment** no canto superior direito do Postman.
 
-1. Execute `/auth/login`
-2. O token será salvo automaticamente na variável `{{token}}`
-3. Utilize as rotas protegidas normalmente
+## Captura automática do token
+
+A collection está configurada para capturar automaticamente o token retornado no login.
+
+A requisição `/auth/login` possui um script na aba **Tests**:
+
+```javascript
+const jsonData = pm.response.json();
+pm.environment.set("token", jsonData.token);
+```
+
+Após o login, o token é salvo automaticamente na variável:
+
+```
+{{token}}
+```
+
+## Fluxo de teste
+
+1. Execute `/auth/register` (opcional)
+2. Execute `/auth/login`
+3. O token retornado será salvo automaticamente na variável `{{token}}`
+4. As rotas protegidas utilizam automaticamente o header:
+
+```
+Authorization: Bearer {{token}}
+```
 
 ---
 
