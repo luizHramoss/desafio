@@ -51,9 +51,8 @@
           "listen": "test",
           "script": {
             "exec": [
-              "const response = pm.response.json();\r",
-              "\r",
-              "pm.collectionVariables.set(\"token\", response.token);"
+              "const jsonData = pm.response.json();\r",
+              "pm.environment.set(\"token\", jsonData.token);"
             ],
             "type": "text/javascript",
             "packages": {},
