@@ -26,13 +26,10 @@
           }
         },
         "url": {
-          "raw": "http://192.168.92.127:3000/auth/register",
+          "raw": "http://localhost:3000/auth/register",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
@@ -78,13 +75,10 @@
           }
         },
         "url": {
-          "raw": "http://192.168.92.127:3000/auth/login",
+          "raw": "http://localhost:3000/auth/login",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
@@ -113,7 +107,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
+          "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-02\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -121,13 +115,10 @@
           }
         },
         "url": {
-          "raw": "http://192.168.92.127:3000/order",
+          "raw": "http://localhost:3000/order",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
@@ -150,13 +141,10 @@
           }
         ],
         "url": {
-          "raw": "http://192.168.92.127:3000/order/v10089015vdb",
+          "raw": "http://localhost:3000/order/v10089015vdb",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
@@ -180,13 +168,10 @@
           }
         ],
         "url": {
-          "raw": "http://192.168.92.127:3000/order/list",
+          "raw": "http://localhost:3000/order/list",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
@@ -215,7 +200,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 15000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1000,\r\n      \"valorItem\": 2000\r\n    }\r\n  ]\r\n}",
+          "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-02\",\r\n  \"valorTotal\": 15000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1000,\r\n      \"valorItem\": 2000\r\n    }\r\n  ]\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -223,18 +208,14 @@
           }
         },
         "url": {
-          "raw": "http://192.168.92.127:3000/order/update/v10089015vdb",
+          "raw": "http://localhost:3000/order/v10089015vdb",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
             "order",
-            "update",
             "v10089015vdb"
           ]
         },
@@ -254,18 +235,14 @@
           }
         ],
         "url": {
-          "raw": "http://192.168.92.127:3000/order/delete/v10089015vdb",
+          "raw": "http://localhost:3000/order/v10089015vdb",
           "protocol": "http",
           "host": [
-            "192",
-            "168",
-            "92",
-            "127"
+            "localhost"
           ],
           "port": "3000",
           "path": [
             "order",
-            "delete",
             "v10089015vdb"
           ]
         },
