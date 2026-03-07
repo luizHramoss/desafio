@@ -2,7 +2,7 @@
 
 API REST para gerenciamento de pedidos desenvolvida com **Node.js**, **Express**, **Prisma ORM**, **MySQL** e **autenticação JWT**.
 
-O projeto foi desenvolvido como parte de um **desafio técnico**, implementando operações de CRUD para pedidos, autenticação de usuários e boas práticas de backend como middleware de erros e organização em camadas.
+O projeto foi desenvolvido como parte de um **desafio técnico**, implementando operações de CRUD para pedidos, autenticação de usuários e boas práticas de backend como middleware de erros, validação de dados e organização em camadas.
 
 ---
 
@@ -12,10 +12,10 @@ O projeto foi desenvolvido como parte de um **desafio técnico**, implementando 
 * Express
 * Prisma ORM
 * MySQL
-* JWT
+* JWT (JSON Web Token)
 * bcrypt
-* Postman para testes
-* Swagger para documentação 
+* Swagger (documentação da API)
+* Postman (testes de API)
 
 ---
 
@@ -26,44 +26,61 @@ O projeto foi desenvolvido como parte de um **desafio técnico**, implementando 
 * Autenticação via middleware
 * CRUD completo de pedidos
 * Transformação de dados antes de persistir no banco
+* Validação de dados nas requisições
 * Middleware global de tratamento de erros
-* Documentação via Postman
+* Documentação da API com Swagger
+* Collection do Postman para testes
 
 ---
 
 # Estrutura do projeto
 
 ```
-desafio/
-├ prisma/
-│ ├ schema.prisma
-│ └ migrations/
+order-api/
 │
-├ 
+├ config/
+│
 ├ controllers/
 │ ├ authController.js
 │ └ orderController.js
-|
-├ middlewares/
+│
+├ docs/
+│ ├ API-order.postman_collection.json
+│ └ API-order.postman_environment.json
+│
+├ lib/
+│ └ prisma.js
+│
+├ middleware/
 │ ├ authMiddleware.js
 │ ├ errorMiddleware.js
 │ └ notFoundMiddleware.js
 │
+├ models/
+│
+├ prisma/
+│ ├ schema.prisma
+│ └ migrations/
+│
 ├ routes/
 │ ├ authRoutes.js
 │ └ orderRoutes.js
-│ 
-├ lib/
-│ └ prisma.js
 │
-└ app.js
+├ utils/
+│ ├ appError.js
+│ └ asyncHandler.js
 │
-├ docs/
-│ └ API-order.postman_collection.json
+├ validator/
+│ └ orderValidator.js
 │
+├ .env
+├ .env.example
+├ .gitignore
+├ app.js
 ├ server.js
+├ swagger.js
 ├ package.json
-└ .env
+└ README.md
 ```
 
 ---
@@ -136,6 +153,25 @@ Servidor iniciará em:
 ```
 http://localhost:3000
 ```
+
+---
+
+# Documentação Swagger
+
+A documentação interativa da API está disponível em:
+
+```
+http://localhost:3000/api-docs
+```
+
+Nela é possível testar os endpoints diretamente pelo navegador.
+
+Para testar rotas protegidas:
+
+1. Faça login em `/auth/login`
+2. Copie o token retornado
+3. Clique no botão **Authorize**
+4. Cole o token JWT
 
 ---
 
@@ -256,9 +292,9 @@ DELETE `/order/{id}`
 
 # Transformação de dados
 
-O payload recebido pela API passa por um **mapping antes de ser salvo no banco**.
+O payload recebido pela API passa por um **processo de transformação antes de ser salvo no banco**.
 
-Entrada:
+Entrada da API:
 
 ```
 numeroPedido
@@ -267,7 +303,7 @@ dataCriacao
 items
 ```
 
-Persistido no banco:
+Estrutura persistida no banco:
 
 ```
 orderId
@@ -282,11 +318,31 @@ items {
 
 ---
 
+# Validação de dados
+
+A API possui validações para evitar dados inconsistentes, como:
+
+* Campos obrigatórios vazios
+* Strings contendo apenas espaços
+* Valores negativos
+* Datas inválidas
+* Itens duplicados no pedido
+* Arrays vazios
+* Quantidade de itens acima do limite permitido
+
+As validações estão implementadas em:
+
+```
+validator/orderValidator.js
+```
+
+---
+
 # Tratamento de erros
 
-A API possui middleware global para tratamento de erros.
+A API possui um middleware global para tratamento de erros.
 
-Erros internos não expõem detalhes sensíveis.
+Erros internos não expõem detalhes sensíveis da aplicação.
 
 Resposta padrão:
 
@@ -302,7 +358,7 @@ Resposta padrão:
 
 A documentação da API também está disponível através de uma collection do Postman.
 
-Os arquivos estão disponíveis em:
+Arquivos disponíveis em:
 
 ```
 docs/API-order.postman_collection.json
@@ -322,6 +378,8 @@ docs/API-order.postman_environment.json
 
 4. Após importar, selecione o **Environment** no canto superior direito do Postman.
 
+---
+
 ## Captura automática do token
 
 A collection está configurada para capturar automaticamente o token retornado no login.
@@ -339,6 +397,8 @@ Após o login, o token é salvo automaticamente na variável:
 {{token}}
 ```
 
+---
+
 ## Fluxo de teste
 
 1. Execute `/auth/register` (opcional)
@@ -349,18 +409,6 @@ Após o login, o token é salvo automaticamente na variável:
 ```
 Authorization: Bearer {{token}}
 ```
-
----
-
-# Melhorias futuras
-
-* Documentação Swagger
-* Validação de dados com Zod ou Joi
-* Testes automatizados
-* Dockerização da aplicação
-* CI/CD
-
----
 
 # Autor
 
