@@ -12,10 +12,10 @@ O projeto foi desenvolvido como parte de um **desafio técnico**, implementando 
 * Express
 * Prisma ORM
 * MySQL
-* JWT (JSON Web Token)
+* JWT
 * bcrypt
-* Postman (para testes)
-* Swagger (opcional para documentação)
+* Postman para testes
+* Swagger para documentação 
 
 ---
 
@@ -73,8 +73,8 @@ desafio/
 Clone o repositório:
 
 ```
-git clone https://github.com/luizHramoss/desafio.git
-cd desafio
+git clone https://github.com/luizHramoss/order-api.git
+cd order-api
 ```
 
 Instale as dependências:
