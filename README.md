@@ -73,8 +73,8 @@ desafio/
 Clone o repositório:
 
 ```
-git clone https://github.com/seu-usuario/order-api.git
-cd order-api
+git clone https://github.com/luizHramoss/desafio.git
+cd desafio
 ```
 
 Instale as dependências:
